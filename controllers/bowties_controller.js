@@ -18,10 +18,6 @@ function index(req, res, next) {
   });
 }
 
-// function new(req, res, next) {
-//
-// }
-
 function create(req, res, next) {
   console.log('This is a new bowtie!!!');
 
@@ -36,7 +32,7 @@ function create(req, res, next) {
 function show(req, res, next) {
   console.log('this is the bowtie you\'re looking for');
 
-  Bowtie.find({id: req.params.id}, function(err, bowtie) {
+  Bowtie.findOne({id: req.params.id}, function(err, bowtie) {
     if (err || !bowtie) next(err);
 
     res.json(bowtie);
@@ -47,7 +43,7 @@ function update(req, res, next) {
   console.log('updating your bowtie');
 
   Bowtie.findOne({id: req.params.id}, function(err, bowtie) {
-    if(err || !bowtie) next(err);
+    if(err || !result) next(err);
 
     if (req.body.material) bowtie.material         = req.body.material;
     if (req.body.pattern) bowtie.pattern           = req.body.pattern;
